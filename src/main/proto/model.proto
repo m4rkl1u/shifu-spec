@@ -13,6 +13,7 @@ import "include/files.proto";
 import "include/simple.proto";
 import "include/tree.proto";
 import "include/group.proto";
+import "include/batch_norm.proto";
 
 message ModelProto {
   repeated ModelNodeProto node = 1;
@@ -49,7 +50,7 @@ message ModelNodeProto {
     FilesAttributeProto      files   = 13;
     GroupAttributeProto      group = 14;
     TreeAttributeProto       tree = 15;
-
+    BatchNormAttributeProto  batch_norm = 16;
 
     SimpleAttributeProto     simple = 99;
  }

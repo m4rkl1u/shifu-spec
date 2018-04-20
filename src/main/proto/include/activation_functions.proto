@@ -3,10 +3,10 @@ syntax = "proto3";
 option java_package = "ml.shifu.model.proto.include";
 
 enum ActivationFunction {
-    none    = 0;
-    sigmoid = 1;
-    tanh    = 2;
-    softmax = 3;
-    relu    = 4;
-    leakyRelu = 5;
+  none = 0;
+  sigmoid = 1;
+  tanh = 2;
+  softmax = 3;
+  relu = 4;
+  leakyRelu = 5;
 }

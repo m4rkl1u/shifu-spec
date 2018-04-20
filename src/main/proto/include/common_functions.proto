@@ -3,6 +3,6 @@ syntax = "proto3";
 option java_package = "ml.shifu.model.proto.include";
 
 enum Function {
-    round = 0;
-    //TODO
+  round = 0;
+  //TODO
 }

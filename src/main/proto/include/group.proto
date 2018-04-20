@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "ml.shifu.model.proto.include";
+
+// the proto3 is not supported map<int32, map<string, int32>> or repeated map<string, int32>
+// so here a hack for such mappinig
+// the index is [[1, 1, 1...], [2], [3]...]
+// the categories is [[c1, c2, c3...], [c1, x2, x4]...]
+// the value is [[2, 3, 4...]...]
+message GroupAttributeProto {
+    repeated int32 index = 1;
+    repeated string category = 2;
+    repeated int32 value = 3;
+}

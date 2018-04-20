@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+option java_package = "ml.shifu.model.proto";
+
+import "include/map.proto";
+import "include/woe.proto";
+import "include/norm.proto";
+import "include/regression.proto";
+import "include/fc.proto";
+import "include/concat.proto";
+import "include/nullify.proto";
+import "include/files.proto";
+import "include/simple.proto";
+import "include/tree.proto";
+import "include/group.proto";
+
+message ModelProto {
+  repeated ModelNodeProto node = 1;
+  ModelStructureProto     structure = 2;
+  ModelInfoProto          info = 3;
+}
+
+message ModelInfoProto {
+  string          model_name    = 1;
+  int32           model_version = 2;
+  repeated string model_input   = 3;
+  repeated string model_output  = 4;
+}
+
+message ModelStructureProto {
+  // it's the id to name to layer map
+  map<int32, int32> structure = 1;
+}
+
+message ModelNodeProto {
+  int32 node_id           = 1;
+  string name             = 2;
+  repeated string input   = 3;
+  repeated string output  = 4;
+  Operator operator       = 5;
+  oneof Attribute {
+    WOEAttributeProto        woe = 6;
+    MapAttributeProto        map = 7;
+    NormAttributeProto       norm = 8;
+    RegressionAttributeProto regression = 9;
+    FCAttributeProto         fc = 10;
+    ConcatAttributeProto     concat = 11;
+    NullifyAttributeProto    nullify = 12;
+    FilesAttributeProto      files   = 13;
+    GroupAttributeProto      group = 14;
+    TreeAttributeProto       tree = 15;
+
+
+    SimpleAttributeProto     simple = 99;
+ }
+}
+
+enum Operator {
+  WOE        = 0;
+  MAP        = 1;
+  NORM       = 2;
+  REGRESSION = 3;
+  FC         = 4;
+  CONCAT     = 5;
+  NULLIFY    = 6;
+  FILES      = 7;
+  GROUP      = 8;
+  TREE       = 9;
+  BATCHNORM  = 10;
+
+  SIMPLE     = 99;
+}

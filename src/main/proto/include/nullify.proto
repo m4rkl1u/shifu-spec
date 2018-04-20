@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option java_package = "ml.shifu.model.proto.include";
+
+message NullifyAttributeProto {
+    repeated string set = 1;
+}

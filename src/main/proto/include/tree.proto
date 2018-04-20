@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option java_package = "ml.shifu.model.proto.include";
+
+message TreeAttributeProto {
+    repeated TreeNodeAttributeProto tree_nodes = 1;
+}
+
+message TreeNodeAttributeProto {
+    int32 node_id = 1;
+    int32 left_node_id = 2;
+    int32 right_node_id = 3;
+    oneof TreeType {
+        NumericTreeNodeAttributeProto    numeric = 4;
+        BitSetTreeNodeAttributeProto     bitset = 5;
+        CategoriesTreeNodeAttributeProto categories = 6;
+        ValueTreeNodeAttributeProto      value = 7;
+    }
+}
+
+message NumericTreeNodeAttributeProto {
+    double threshold = 1;
+    double default_value = 2;
+    enum TreeOperator {
+        lessThan = 0;
+        lessOrEqual = 1;
+        GreaterThan = 2;
+        GreaterOrEqual = 3;
+    }
+    TreeOperator operator = 3;
+}
+
+message BitSetTreeNodeAttributeProto {
+    repeated int64 bits = 1;
+}
+
+message CategoriesTreeNodeAttributeProto {
+    repeated string categories = 1;
+}
+
+message ValueTreeNodeAttributeProto {
+    double value = 1;
+}

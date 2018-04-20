@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "ml.shifu.model.proto.include";
+
+message ConcatAttributeProto {
+    string delimiter = 1;
+    bool include_name = 2;
+}

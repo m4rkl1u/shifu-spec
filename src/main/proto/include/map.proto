@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "ml.shifu.model.proto.include";
+
+message MapAttributeProto {
+    double default_value = 1;
+    double missing_value = 2;
+    map<string, double> dict = 3;
+}

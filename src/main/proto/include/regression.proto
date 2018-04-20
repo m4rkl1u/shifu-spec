@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "ml.shifu.model.proto.include";
+
+import "activation_functions.proto";
+
+message RegressionAttributeProto {
+    repeated double weights     = 1;
+    repeated int32 exponents   = 2;
+    double bias                 = 3;
+    ActivationFunction function = 4;
+}

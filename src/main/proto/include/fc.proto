@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "ml.shifu.model.proto.include";
+
+import "activation_functions.proto";
+
+message FCAttributeProto {
+    repeated double kernel = 1;
+    repeated int32 dim = 2;
+    repeated double bias = 3;
+    ActivationFunction function = 4;
+    double lambda = 5;
+}

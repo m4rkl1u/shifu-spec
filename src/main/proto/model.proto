@@ -14,6 +14,7 @@ import "include/simple.proto";
 import "include/tree.proto";
 import "include/group.proto";
 import "include/batch_norm.proto";
+import "include/function.proto";
 
 message ModelProto {
   repeated ModelNodeProto node = 1;
@@ -51,6 +52,7 @@ message ModelNodeProto {
     GroupAttributeProto      group = 14;
     TreeAttributeProto       tree = 15;
     BatchNormAttributeProto  batch_norm = 16;
+    FunctionAttributeProto   function = 17;
 
     SimpleAttributeProto     simple = 99;
  }
@@ -68,6 +70,7 @@ enum Operator {
   GROUP      = 8;
   TREE       = 9;
   BATCHNORM  = 10;
+  FUNCTION   = 11;
 
   SIMPLE     = 99;
 }

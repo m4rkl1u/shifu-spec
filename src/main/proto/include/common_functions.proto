@@ -4,5 +4,14 @@ option java_package = "ml.shifu.model.proto.include";
 
 enum Function {
   round = 0;
-  //TODO
+  floor = 1;
+  ceil  = 2;
+  log   = 3;
+  log10 = 4;
+  exp   = 5;
+  min   = 6;
+  max   = 7;
+  avg   = 8;
+  product = 9;
+  sum   = 10;
 }

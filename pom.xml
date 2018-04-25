@@ -37,8 +37,18 @@
             <artifactId>protobuf-java</artifactId>
             <version>${proto.version}</version>
         </dependency>
-
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>${release.id}</id>
+            <url>${release.link}</url>
+        </repository>
+        <snapshotRepository>
+            <id>${snapshot.id}</id>
+            <url>${snapshot.link}</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <build>
         <plugins>

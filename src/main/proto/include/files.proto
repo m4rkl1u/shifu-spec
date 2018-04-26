@@ -4,11 +4,7 @@ option java_package = "ml.shifu.model.proto.include";
 
 message FilesAttributeProto {
   int32 score_index = 1;
-  repeated string file_name = 2;
-  message FileContentProto {
-    repeated bytes content = 1;
-  }
-  repeated FileContentProto file = 3;
-  string type = 4;
+  map<string, bytes> files = 2;
+  string type = 3;
 }
 

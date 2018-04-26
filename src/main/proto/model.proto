@@ -22,6 +22,13 @@ message ModelProto {
   ModelInfoProto          info = 3;
 }
 
+/*
+ The Model Information segment, basically it has
+ 1. the name of the model
+ 2. the version of model
+ 3. the input and output
+ 4. the model description
+*/
 message ModelInfoProto {
   string          model_name        = 1;
   int32           model_version     = 2;
@@ -30,11 +37,23 @@ message ModelInfoProto {
   string          model_description = 5;
 }
 
+/*
+ The model structure segment,
+ 1. execution plan
+ 2. the DAG (plan)
+*/
 message ModelStructureProto {
   // it's the id to name to layer map
   map<int32, int32> structure = 1;
 }
 
+/*
+ The node defination segment
+ 1. each node have its id(unique)
+ 2. the name of node
+ 3. the node input and output
+ 4. operator and its attribute
+*/
 message ModelNodeProto {
   int32 node_id           = 1;
   string name             = 2;

@@ -15,6 +15,7 @@ import "include/tree.proto";
 import "include/group.proto";
 import "include/batch_norm.proto";
 import "include/function.proto";
+import "include/constant.proto";
 
 message ModelProto {
   repeated ModelNodeProto node = 1;
@@ -44,7 +45,7 @@ message ModelInfoProto {
 */
 message ModelStructureProto {
   // it's the id to name to layer map
-  map<int32, int32> structure = 1;
+  map<int32, sint32> structure = 1;
 }
 
 /*
@@ -73,6 +74,7 @@ message ModelNodeProto {
     TreeAttributeProto       tree = 15;
     BatchNormAttributeProto  batch_norm = 16;
     FunctionAttributeProto   function = 17;
+    ConstantAttributeProto   contant  = 18;
 
     SimpleAttributeProto     simple = 99;
  }
@@ -91,6 +93,7 @@ enum Operator {
   TREE       = 9;
   BATCHNORM  = 10;
   FUNCTION   = 11;
+  CONSTANT   = 12;
 
   SIMPLE     = 99;
 }

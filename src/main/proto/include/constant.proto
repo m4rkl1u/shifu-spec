@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "ml.shifu.model.proto.include";
+
+message ConstantAttributeProto {
+  repeated double doubles  = 1;
+  repeated float  floats   = 2;
+  repeated int32  ints     = 3;
+  repeated string strings  = 4;
+
+  //data dimintion
+  repeated int32  dim      = 99;
+}

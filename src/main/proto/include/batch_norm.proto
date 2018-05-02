@@ -3,9 +3,9 @@ syntax = "proto3";
 option java_package = "ml.shifu.model.proto.include";
 
 message BatchNormAttributeProto {
-  double mean = 1;
-  double variance = 2;
-  double scalar = 3;
-  double shift = 4;
+  repeated double mean = 1;
+  repeated double variance = 2;
+  repeated double scalar = 3;
+  repeated double shift = 4;
   double epsilon = 5;
 }

@@ -11,10 +11,10 @@ message TreeNodeAttributeProto {
   int32 left_node_id = 2;
   int32 right_node_id = 3;
   oneof TreeType {
-    NumericTreeNodeAttributeProto numeric = 4;
-    BitSetTreeNodeAttributeProto bitset = 5;
+    NumericTreeNodeAttributeProto    numeric = 4;
+    BitSetTreeNodeAttributeProto     bitset = 5;
     CategoriesTreeNodeAttributeProto categories = 6;
-    ValueTreeNodeAttributeProto value = 7;
+    ValueTreeNodeAttributeProto      value = 7;
   }
 }
 

@@ -50,7 +50,7 @@ message ModelStructureProto {
 
 /*
  The node defination segment
- 1. each node have its id(unique)
+ 1. each node have an id(unique)
  2. the name of node
  3. the node input and output
  4. operator and its attribute

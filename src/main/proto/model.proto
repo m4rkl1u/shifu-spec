@@ -37,7 +37,7 @@ message ModelStructureProto {
 
 /*
  The node defination segment
- 1. each node have its id(unique)
+ 1. each node have an id(unique)
  2. the name of node
  3. the node input and output
  4. operator and its attribute
@@ -90,10 +90,10 @@ message SimpleAttributeProto {
 }
 
 message BatchNormAttributeProto {
-  double mean = 1;
-  double variance = 2;
-  double scalar = 3;
-  double shift = 4;
+  repeated double mean = 1;
+  repeated double variance = 2;
+  repeated double scalar = 3;
+  repeated double shift = 4;
   double epsilon = 5;
 }
 
@@ -240,12 +240,14 @@ enum ActivationFunction {
 }
 
 enum Function {
+  // f(x)
   round = 0;
   floor = 1;
   ceil  = 2;
   log   = 3;
   log10 = 4;
   exp   = 5;
+  // aggregation f(x1, x2, x3...)
   min   = 6;
   max   = 7;
   avg   = 8;

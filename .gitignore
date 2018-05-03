@@ -18,6 +18,9 @@
 *.tar.gz
 *.rar
 *.iml
+*.py
+*.ipynb
+*.pyc
 
 .idea/
 

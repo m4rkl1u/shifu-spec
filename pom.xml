@@ -74,9 +74,6 @@
                         <configuration>
                             <addProtoSources>all</addProtoSources>
                             <includeStdTypes>true</includeStdTypes>
-                            <includeDirectories>
-                                <includeDirectory>src/main/proto/include</includeDirectory>
-                            </includeDirectories>
                             <inputDirectories>
                                 <include>src/main/proto</include>
                             </inputDirectories>

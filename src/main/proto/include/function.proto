@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "ml.shifu.model.proto.include";
-
-import "common_functions.proto";
-
-message FunctionAttributeProto {
-  Function function = 1;
-}

@@ -2,20 +2,7 @@ syntax = "proto3";
 
 option java_package = "ml.shifu.model.proto";
 
-import "include/map.proto";
-import "include/woe.proto";
-import "include/norm.proto";
-import "include/regression.proto";
-import "include/fc.proto";
-import "include/concat.proto";
-import "include/nullify.proto";
-import "include/files.proto";
-import "include/simple.proto";
-import "include/tree.proto";
-import "include/group.proto";
-import "include/batch_norm.proto";
-import "include/function.proto";
-import "include/constant.proto";
+package shifu_model_spec;
 
 message ModelProto {
   repeated ModelNodeProto node = 1;
@@ -96,4 +83,172 @@ enum Operator {
   CONSTANT   = 12;
 
   SIMPLE     = 99;
+}
+
+message SimpleAttributeProto {
+  ActivationFunction function = 1;
+}
+
+message BatchNormAttributeProto {
+  double mean = 1;
+  double variance = 2;
+  double scalar = 3;
+  double shift = 4;
+  double epsilon = 5;
+}
+
+message ConcatAttributeProto {
+  string delimiter = 1;
+  bool include_name = 2;
+}
+
+message FCAttributeProto {
+  repeated double kernel = 1;
+  repeated int32 dim = 2;
+  repeated double bias = 3;
+  ActivationFunction function = 4;
+  double lambda = 5;
+}
+
+message ConstantAttributeProto {
+  repeated double doubles  = 1;
+  repeated float  floats   = 2;
+  repeated int32  ints     = 3;
+  repeated string strings  = 4;
+
+  //data dimension
+  repeated int32  dim      = 99;
+}
+
+message FilesAttributeProto {
+  int32 score_index = 1;
+  map<string, bytes> files = 2;
+  string type = 3;
+}
+
+message FunctionAttributeProto {
+  Function function = 1;
+}
+
+message GroupAttributeProto {
+  message CategoryIndexMapProto {
+    map<string, int32> categories_index = 1;
+  }
+  map<int32, CategoryIndexMapProto> map = 1;
+}
+
+message MapAttributeProto {
+  double default_value = 1;
+  double missing_value = 2;
+  map<string, double> dict = 3;
+}
+
+message NormAttributeProto {
+  double default_value = 1;
+  double missing_value = 2;
+
+  message NormUnitProto {
+    double value = 1;
+    double cutoff = 2;
+  }
+
+  repeated NormUnitProto units = 3;
+
+  enum OutlierTreat {
+    as_missing = 0;
+    as_is = 1;
+    as_extreme = 2;
+  }
+  OutlierTreat treat = 4;
+}
+
+message NullifyAttributeProto {
+  repeated string set = 1;
+}
+
+message RegressionAttributeProto {
+  repeated double weights = 1;
+  repeated int32 exponents = 2;
+  double bias = 3;
+  ActivationFunction function = 4;
+}
+
+message TreeAttributeProto {
+  message NumericTreeNodeAttributeProto {
+    double threshold = 1;
+    double default_value = 2;
+    enum TreeOperator {
+      lessThan = 0;
+      lessOrEqual = 1;
+      GreaterThan = 2;
+      GreaterOrEqual = 3;
+    }
+    TreeOperator operator = 3;
+  }
+  message BitSetTreeNodeAttributeProto {
+    repeated int64 bits = 1;
+  }
+  message CategoriesTreeNodeAttributeProto {
+    repeated string categories = 1;
+  }
+
+  message ValueTreeNodeAttributeProto {
+    double value = 1;
+  }
+  message TreeNodeAttributeProto {
+    int32 node_id = 1;
+    int32 left_node_id = 2;
+    int32 right_node_id = 3;
+    oneof TreeType {
+      NumericTreeNodeAttributeProto numeric = 4;
+      BitSetTreeNodeAttributeProto bitset = 5;
+      CategoriesTreeNodeAttributeProto categories = 6;
+      ValueTreeNodeAttributeProto value = 7;
+    }
+  }
+  repeated TreeNodeAttributeProto tree_nodes = 1;
+}
+
+message WOEAttributeProto {
+
+  enum Closure {
+    openopen = 0;
+    openclosed = 1;
+    closedopen = 2;
+    closedclosed = 3;
+  }
+
+  message IntervalBinProto {
+    double left = 1;
+    double right = 2;
+    double value = 3;
+    Closure closure = 4;
+  }
+
+  double default_value = 1;
+  double missing_value = 2;
+  repeated IntervalBinProto bins = 3;
+}
+
+enum ActivationFunction {
+  none = 0;
+  sigmoid = 1;
+  tanh = 2;
+  softmax = 3;
+  relu = 4;
+  leakyRelu = 5;
+}
+
+enum Function {
+  round = 0;
+  floor = 1;
+  ceil  = 2;
+  log   = 3;
+  log10 = 4;
+  exp   = 5;
+  min   = 6;
+  max   = 7;
+  avg   = 8;
+  product = 9;
+  sum   = 10;
 }

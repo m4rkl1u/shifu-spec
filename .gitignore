@@ -21,6 +21,7 @@
 *.py
 *.ipynb
 *.pyc
+.DS_Store
 
 .idea/
 

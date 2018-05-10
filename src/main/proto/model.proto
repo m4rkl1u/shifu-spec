@@ -92,8 +92,8 @@ message SimpleAttributeProto {
 message BatchNormAttributeProto {
   repeated double mean = 1;
   repeated double variance = 2;
-  repeated double scalar = 3;
-  repeated double shift = 4;
+  repeated double gamma = 3;
+  repeated double beta = 4;
   double epsilon = 5;
 }
 
@@ -174,27 +174,31 @@ message RegressionAttributeProto {
 }
 
 message TreeAttributeProto {
+  // the numeric tree node and its operator
   message NumericTreeNodeAttributeProto {
     double threshold = 1;
     double default_value = 2;
     enum TreeOperator {
-      lessThan = 0;
-      lessOrEqual = 1;
+      LessThan = 0;
+      LessOrEqual = 1;
       GreaterThan = 2;
       GreaterOrEqual = 3;
     }
     TreeOperator operator = 3;
   }
+  // a bit set of tree node
   message BitSetTreeNodeAttributeProto {
     repeated int64 bits = 1;
   }
+  // a categories of tree node
   message CategoriesTreeNodeAttributeProto {
     repeated string categories = 1;
   }
-
+  // final value of tree node
   message ValueTreeNodeAttributeProto {
     double value = 1;
   }
+  // a tree node
   message TreeNodeAttributeProto {
     int32 node_id = 1;
     int32 left_node_id = 2;
@@ -207,6 +211,7 @@ message TreeAttributeProto {
     }
   }
   repeated TreeNodeAttributeProto tree_nodes = 1;
+  int32 root_id = 2;
 }
 
 message WOEAttributeProto {
